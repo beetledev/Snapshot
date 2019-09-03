@@ -7,22 +7,23 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 if [[ $# -ne 1 ]]; then
-    echo "Usage: $0 nn      (nn = Num Of Masternodes)" 1>&2
-    exit 1
+    read -e -p "How many masternode do you want install? [1-64]: " -e NM
+else
+    NM=$1
 fi
 
 re='^[0-9]+$'
-if ! [[ $1 =~ $re ]]; then
+if ! [[ $NM =~ $re ]]; then
    echo "error: Not a number" 1>&2
    exit 1
 fi
 
-if [[ $1 -lt 1 || $1 -gt 64 ]]; then
+if [[ $NM -lt 1 || $NM -gt 64 ]]; then
    echo "error: Invalid number" 1>&2
    exit 1
 fi
 
-NUMMN=`expr $1 + 0`
+NUMMN=`expr $NM + 0`
 
 echo ">>>>>> Installing required components..."
 
