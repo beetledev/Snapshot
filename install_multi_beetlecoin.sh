@@ -6,22 +6,20 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-if [[ $# -ne 1 ]]; then
-    read -e -p "How many masternode do you want install? [1-64]: " -e NM
-else
-    NM=$1
-fi
+NM=$1
+LOOP=1
+while [[ $LOOP -eq 1 ]]; do
+    read -p "How many BeetleCoin masternode do you want install? [1-64]: " -e NM -i NM
 
-re='^[0-9]+$'
-if ! [[ $NM =~ $re ]]; then
-   echo "error: Not a number: $NM" 1>&2
-   exit 1
-fi
+    re='^[0-9]+$'
+    if [[ $NM =~ $re ]]; then
+        if [[ $NM -ge 1 && $NM -le 64 ]]; then
+            LOOP=0
+        fi
+    fi
+end
 
-if [[ $NM -lt 1 || $NM -gt 64 ]]; then
-   echo "error: Invalid number: $NM" 1>&2
-   exit 1
-fi
+echo ">>>>>> Installing $NM Masternodes..."
 
 NUMMN=`expr $NM + 0`
 
