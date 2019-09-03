@@ -9,7 +9,7 @@ fi
 NM=$1
 LOOP=1
 while [[ $LOOP -eq 1 ]]; do
-    read -p "How many BeetleCoin masternode do you want install? [1-64]: " -e NM -i NM
+    read -p "How many BeetleCoin masternode do you want install? [1-64]: " -e NM
 
     re='^[0-9]+$'
     if [[ $NM =~ $re ]]; then
