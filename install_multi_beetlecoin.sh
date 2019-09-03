@@ -12,16 +12,14 @@ else
     NM=$1
 fi
 
-echo "input = $NM"
-
 re='^[0-9]+$'
 if ! [[ $NM =~ $re ]]; then
-   echo "error: Not a number" 1>&2
+   echo "error: Not a number: $NM" 1>&2
    exit 1
 fi
 
 if [[ $NM -lt 1 || $NM -gt 64 ]]; then
-   echo "error: Invalid number" 1>&2
+   echo "error: Invalid number: $NM" 1>&2
    exit 1
 fi
 
