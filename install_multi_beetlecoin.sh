@@ -12,6 +12,8 @@ else
     NM=$1
 fi
 
+echo "input = $NM"
+
 re='^[0-9]+$'
 if ! [[ $NM =~ $re ]]; then
    echo "error: Not a number" 1>&2
