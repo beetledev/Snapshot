@@ -17,7 +17,7 @@ while [[ $LOOP -eq 1 ]]; do
             LOOP=0
         fi
     fi
-end
+done
 
 echo ">>>>>> Installing $NM Masternodes..."
 
