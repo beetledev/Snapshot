@@ -1,4 +1,5 @@
 #!/bin/bash
+#!/bin/bash
 
 # Check if I am root
 if [ "$(id -u)" != "0" ]; then
