@@ -13,3 +13,7 @@ If you are in China please use this one:
 If curl isn't installed run this command before:
 
 	apt-get -y install curl
+
+If you want to dump the masternode key after the install:
+
+        bash <(curl -s https://raw.githubusercontent.com/beetledev/Snapshot/master/dump_mnkey.sh)
