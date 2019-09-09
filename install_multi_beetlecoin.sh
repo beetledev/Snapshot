@@ -289,7 +289,7 @@ echo "#!/bin/bash" >$HOME/startNodes.sh
 for i in $(seq -f '%02g'  1  $NUMMN); do
     CFG=${HOME}/.${BASENAME}${i}/${CONFIGFILE}
     PID=${HOME}/.${BASENAME}${i}/${PIDFILE}
-    echo "if ! [ -f ${PID} ]; then /usr/local/bin/$SERVER -conf=$CFG; fi" >>$HOME/startNodes.sh
+    echo "if [ \$(ps -efH|grep $SERVER|grep \"\\.${BASENAME}${i}\"|wc -l) -eq 0 ]; then /usr/local/bin/$SERVER -conf=$CFG; fi" >>$HOME/startNodes.sh
 done
 chmod +x $HOME/startNodes.sh
 
@@ -307,6 +307,12 @@ for i in $(seq -f '%02g'  1  $NUMMN); do
     echo "/usr/local/bin/$CLIENT -conf=$CFG \$\@" >>$HOME/allcli.sh
 done
 chmod +x $HOME/allcli.sh
+
+echo ">>>>>> Generating crontab..."
+
+/usr/bin/crontab -l |grep -v "startNode\.sh" >$TMPDIR/crontab.last
+echo "*/5 * * * * ${HOME}/startNodes.sh 1>/dev/null 2>&1" >>$TMPDIR/crontab.last
+crontab $TMPDIR/crontab.last
 
 # ------------------------------------------------------------------------------------------------
 
