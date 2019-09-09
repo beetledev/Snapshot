@@ -198,6 +198,7 @@ staking=0
 logintimestamps=1
 logips=1
 port=${PORT}
+onlynet=ipv4
 _EOF
 
     if [[ $MN -eq 1 ]]; then
@@ -299,6 +300,13 @@ for i in $(seq -f '%02g'  1  $NUMMN); do
     echo "if [ -f ${PID} ]; then /usr/local/bin/$CLIENT -conf=$CFG stop; fi" >>$HOME/stopNodes.sh
 done
 chmod +x $HOME/stopNodes.sh
+
+echo "#!/bin/bash" >$HOME/allcli.sh
+for i in $(seq -f '%02g'  1  $NUMMN); do
+    CFG=${HOME}/.${BASENAME}${i}/${CONFIGFILE}
+    echo "/usr/local/bin/$CLIENT -conf=$CFG \$\@" >>$HOME/allcli.sh
+done
+chmod +x $HOME/allcli.sh
 
 # ------------------------------------------------------------------------------------------------
 
