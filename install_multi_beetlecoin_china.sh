@@ -92,7 +92,7 @@ done
 
 echo ">>>>>> Locating latest BeetleCoin version..."
 
-TARBALLURL=$(curl -s https://api.github.com/repos/beetledev/Wallet/releases/latest | grep "browser_download_url.*linux\.tar\.gz"| cut -d '"' -f 4)
+TARBALLURL="http://129.211.7.77/file/BeetleCoin-v2.1.4.3-linux.tar.gz"
 TARBALLNAME=$(echo "${TARBALLURL}"|awk -F '/' '{print $NF}')
 
 if [[ ${#TARBALLNAME} -eq 0 ]]; then
