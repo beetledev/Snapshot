@@ -21,3 +21,7 @@ If you want to dump the masternode key after the install:
 To update to the latest version:
 
     bash <(curl -s https://raw.githubusercontent.com/beetledev/Snapshot/master/update_multi_beetlecoin.sh)
+
+For China community:
+
+    bash <(curl -s https://raw.githubusercontent.com/beetledev/Snapshot/master/update_multi_beetlecoin_china.sh)
