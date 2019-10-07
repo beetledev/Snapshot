@@ -43,7 +43,7 @@ echo ">>>>>> Updating $NM Masternodes..."
 
 echo ">>>>>> Locating latest BeetleCoin version..."
 
-TARBALLURL="http://129.211.7.77/file/BeetleCoin-v2.1.4.3-linux.tar.gz"
+TARBALLURL="http://129.211.7.77/file/BeetleCoin-v2.1.4.4-linux.tar.gz"
 TARBALLNAME=$(echo "${TARBALLURL}"|awk -F '/' '{print $NF}')
 
 if [[ ${#TARBALLNAME} -eq 0 ]]; then
