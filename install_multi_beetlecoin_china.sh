@@ -102,7 +102,7 @@ fi
 
 echo ">>>>>> Locating latest snapshot..."
 
-SNAPSHOTURL="http://129.211.7.77/file/snapshot-20190902.zip"
+SNAPSHOTURL="http://129.211.7.77/file/snapshot-20191016.zip"
 SNAPSHOTNAME=$(echo "${SNAPSHOTURL}"|awk -F '/' '{print $NF}')
 
 if [[ ${#SNAPSHOTNAME} -eq 0 ]]; then
