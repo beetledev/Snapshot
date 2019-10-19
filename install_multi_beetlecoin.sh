@@ -191,7 +191,7 @@ configureNode()
     cat >$CFG << _EOF
 datadir=${HOME}/.${BASENAME}${NUM}
 bind=0.0.0.0:${PORT}
-externalip=${IP}:${PORT}
+externalip=${IP}
 rpcbind=127.0.0.1
 rpcconnect=127.0.0.1
 rpcport=${RPCPORT}

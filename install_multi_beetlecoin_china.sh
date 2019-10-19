@@ -93,8 +93,8 @@ done
 
 echo ">>>>>> Locating latest BeetleCoin version..."
 
-TARBALLURL="http://129.211.7.77/file/BeetleCoin-v2.1.4.4-linux.tar.gz"
-TARBALLNAME=$(echo "${TARBALLURL}"|awk -F '/' '{print $NF}')
+TARBALLNAME=$(curl -s http://129.211.7.77/file/|grep href|grep linux.tar.gz|awk 'match($0, /href=\"([^\"]+)/,arr) {print arr[1]}'|sort|tail -1)
+TARBALLURL="http://129.211.7.77/file/${TARBALLNAME}"
 
 if [[ ${#TARBALLNAME} -eq 0 ]]; then
     echo "TARBALL not found" 1>&2
@@ -103,8 +103,8 @@ fi
 
 echo ">>>>>> Locating latest snapshot..."
 
-SNAPSHOTURL="http://129.211.7.77/file/snapshot-20191016.zip"
-SNAPSHOTNAME=$(echo "${SNAPSHOTURL}"|awk -F '/' '{print $NF}')
+SNAPSHOTNAME=$(curl -s http://129.211.7.77/file/|grep href|grep snapshot|awk 'match($0, /href=\"([^\"]+)/,arr) {print arr[1]}'|sort|tail -1)
+SNAPSHOTURL="http://129.211.7.77/file/${SNAPSHOTNAME}"
 
 if [[ ${#SNAPSHOTNAME} -eq 0 ]]; then
     echo "SNAPSHOT not found"
@@ -191,7 +191,7 @@ configureNode()
     cat >$CFG << _EOF
 datadir=${HOME}/.${BASENAME}${NUM}
 bind=0.0.0.0:${PORT}
-externalip=${IP}:${PORT}
+externalip=${IP}
 rpcbind=127.0.0.1
 rpcconnect=127.0.0.1
 rpcport=${RPCPORT}
