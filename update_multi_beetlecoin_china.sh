@@ -43,8 +43,8 @@ echo ">>>>>> Updating $NM Masternodes..."
 
 echo ">>>>>> Locating latest BeetleCoin version..."
 
-TARBALLURL="http://129.211.7.77/file/BeetleCoin-v2.1.4.4-linux.tar.gz"
-TARBALLNAME=$(echo "${TARBALLURL}"|awk -F '/' '{print $NF}')
+TARBALLNAME=$(curl -s http://129.211.7.77/file/|grep href|grep linux.tar.gz|awk 'match($0, /href=\"([^\"]+)/,arr) {print arr[1]}'|sort|tail -1)
+TARBALLURL="http://129.211.7.77/file/${TARBALLNAME}"
 
 if [[ ${#TARBALLNAME} -eq 0 ]]; then
     echo "TARBALL not found" 1>&2
