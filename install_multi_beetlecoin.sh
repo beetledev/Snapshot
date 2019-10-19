@@ -171,8 +171,10 @@ configureNode()
     CFG=${DIR}/${CONFIGFILE}
     if [[ `expr $NUM + 0` -eq 1 ]]; then
         PORT=$DFTPORT
+        MAXCONN=256
     else
         PORT=`expr $BASEPORT + $NUM`
+        MAXCONN=128
     fi
     RPCPORT=`expr $BASERPCPORT + $NUM`
 
@@ -204,6 +206,7 @@ logintimestamps=1
 logips=1
 port=${PORT}
 onlynet=ipv4
+maxconnections=${MAXCONN}
 _EOF
 
     if [[ $MN -eq 1 ]]; then
