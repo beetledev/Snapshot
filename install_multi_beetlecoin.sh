@@ -75,6 +75,7 @@ fi
 BASENAME="beetlecoin"
 BASEPORT=42300
 BASERPCPORT=43300
+DFTPORT=3133
 CONFIGFILE="${BASENAME}.conf"
 PIDFILE="${BASENAME}d.pid"
 CLIENT="${BASENAME}-cli"
@@ -168,7 +169,11 @@ configureNode()
     PKEY=$4
     DIR=${HOME}/.${BASENAME}${NUM}
     CFG=${DIR}/${CONFIGFILE}
-    PORT=`expr $BASEPORT + $NUM`
+    if [[ `expr $NUM + 0` -eq 1 ]]; then
+        PORT=$DFTPORT
+    else
+        PORT=`expr $BASEPORT + $NUM`
+    fi
     RPCPORT=`expr $BASERPCPORT + $NUM`
 
     mkdir -p $DIR
@@ -321,10 +326,13 @@ clear
 echo "# you can use this masternode.conf configuration in you control wallet to start the masternodes, please change 'tx' & 'idx' with your collateral tx info"
 echo ""
 
-for i in $(seq -f '%02g'  1  $NUMMN); do
-    p=`expr $i - 1`
-    PORT=`expr $BASEPORT + $i`
-    echo "MN${i} ${IP}:${PORT} ${MNKEY[$p]} tx idx"
+ls $HOME/.${BASENAME}*/${CONFIGFILE} | sort | while read FILE; do
+    LN=${#FILE}
+    MN=${FILE:$LN - 18:2}
+    ADDR=$(grep "masternodeaddr\=" $FILE|awk -F '=' '{print $2}')
+    MNKEY=$(grep "masternodeprivkey\=" $FILE|awk -F '=' '{print $2}')
+
+    echo "MN${MN} ${ADDR} ${MNKEY} <tx> <id>"
 done
 
 NP=$(ps -efH|grep $SERVER|grep "\-conf\="|wc -l)
