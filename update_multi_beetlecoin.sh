@@ -25,6 +25,11 @@ if ! [ -d ${HOME}/.${BASENAME}01 ]; then
     exit 1
 fi
 
+echo ">>>>>> Disabling Crontab..."
+
+/usr/bin/crontab -l |grep -v "startNode\.sh" >$TMPDIR/crontab.last
+crontab $TMPDIR/crontab.last
+
 echo ">>>>>> Stopping $NM Masternodes..."
 
 /usr/bin/killall $SERVER
