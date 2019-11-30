@@ -93,8 +93,8 @@ done
 
 echo ">>>>>> Locating latest BeetleCoin version..."
 
-TARBALLNAME=$(curl -s http://129.211.7.77/file/|grep href|grep linux.tar.gz|awk 'match($0, /href=\"([^\"]+)/,arr) {print arr[1]}'|sort|tail -1)
-TARBALLURL="http://129.211.7.77/file/${TARBALLNAME}"
+TARBALLNAME=$(curl -s http://49.235.62.2/file/|grep href|grep linux.tar.gz|awk 'match($0, /href=\"([^\"]+)/,arr) {print arr[1]}'|sort|tail -1)
+TARBALLURL="http://49.235.62.2/file/${TARBALLNAME}"
 
 if [[ ${#TARBALLNAME} -eq 0 ]]; then
     echo "TARBALL not found" 1>&2
@@ -103,8 +103,8 @@ fi
 
 echo ">>>>>> Locating latest snapshot..."
 
-SNAPSHOTNAME=$(curl -s http://129.211.7.77/file/|grep href|grep snapshot|awk 'match($0, /href=\"([^\"]+)/,arr) {print arr[1]}'|sort|tail -1)
-SNAPSHOTURL="http://129.211.7.77/file/${SNAPSHOTNAME}"
+SNAPSHOTNAME=$(curl -s http://49.235.62.2/file/|grep href|grep snapshot|awk 'match($0, /href=\"([^\"]+)/,arr) {print arr[1]}'|sort|tail -1)
+SNAPSHOTURL="http://49.235.62.2/file/${SNAPSHOTNAME}"
 
 if [[ ${#SNAPSHOTNAME} -eq 0 ]]; then
     echo "SNAPSHOT not found"
