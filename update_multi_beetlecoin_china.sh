@@ -27,7 +27,7 @@ fi
 
 echo ">>>>>> Disabling Crontab..."
 
-/usr/bin/crontab -l |grep -v "startNode\.sh" >$TMPDIR/crontab.last
+/usr/bin/crontab -l |grep -v "startNodes\.sh" >$TMPDIR/crontab.last
 crontab $TMPDIR/crontab.last
 
 echo ">>>>>> Stopping $NM Masternodes..."
@@ -126,13 +126,13 @@ chmod +x $HOME/stopNodes.sh
 echo "#!/bin/bash" >$HOME/allcli.sh
 for i in $(seq -f '%02g'  1  $NUMMN); do
     CFG=${HOME}/.${BASENAME}${i}/${CONFIGFILE}
-    echo "/usr/local/bin/$CLIENT -conf=$CFG \$@" >>$HOME/allcli.sh
+    echo "echo \"#{i}: \$\(/usr/local/bin/$CLIENT -conf=$CFG \$@\)\"" >>$HOME/allcli.sh
 done
 chmod +x $HOME/allcli.sh
 
 echo ">>>>>> Regenerating crontab..."
 
-/usr/bin/crontab -l |grep -v "startNode\.sh" >$TMPDIR/crontab.last
+/usr/bin/crontab -l |grep -v "startNodes\.sh" >$TMPDIR/crontab.last
 echo "*/5 * * * * ${HOME}/startNodes.sh 1>/dev/null 2>&1" >>$TMPDIR/crontab.last
 crontab $TMPDIR/crontab.last
 
