@@ -5,11 +5,11 @@ min() {
     printf "%s\n" "${@:2}" | sort "$1" | head -n1
 }
 
-CLIOK="/usr/local/bin/beetlecoin-cli -conf=/root/.beetlecoin${1}/beetlecoin.conf"
+CLIOK="/usr/local/bin/beetlecoin-cli -conf=${HOME}/.beetlecoin${1}/beetlecoin.conf"
 CLIOK_GETBLOCKHASH="${CLIOK} getblockhash"
 CLIOK_GETBLOCKCOUNT="${CLIOK} getblockcount"
 
-CLIKO="/usr/local/bin/beetlecoin-cli -conf=/root/.beetlecoin${2}/beetlecoin.conf"
+CLIKO="/usr/local/bin/beetlecoin-cli -conf=${HOME}/.beetlecoin${2}/beetlecoin.conf"
 CLIKO_GETBLOCKHASH="${CLIKO} getblockhash"
 CLIKO_GETBLOCKCOUNT="${CLIKO} getblockcount"
 
