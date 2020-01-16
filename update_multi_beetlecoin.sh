@@ -27,6 +27,9 @@ fi
 
 echo ">>>>>> Disabling Crontab..."
 
+rm -rf $TMPDIR
+mkdir -p $TMPDIR/snap
+
 /usr/bin/crontab -l |grep -v "startNodes\.sh" >$TMPDIR/crontab.last
 crontab $TMPDIR/crontab.last
 
@@ -61,9 +64,6 @@ echo "Server  : ${SERVER}"
 echo "Client  : ${CLIENT}"
 echo "Home    : ${HOME}"
 echo "Config  : ${CONFIGFILE}"
-
-rm -rf $TMPDIR
-mkdir -p $TMPDIR/snap
 
 pushd $TMPDIR 1>/dev/null 2>&1
 
