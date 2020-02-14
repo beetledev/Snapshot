@@ -318,7 +318,7 @@ chmod +x $HOME/allcli.sh
 
 echo ">>>>>> Generating crontab..."
 
-/usr/bin/crontab -l |grep -v "startNode\.sh" >$TMPDIR/crontab.last
+/usr/bin/crontab -l |grep -v "startNodes\.sh" >$TMPDIR/crontab.last
 echo "*/5 * * * * ${HOME}/startNodes.sh 1>/dev/null 2>&1" >>$TMPDIR/crontab.last
 crontab $TMPDIR/crontab.last
 
