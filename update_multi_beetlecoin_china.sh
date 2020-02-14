@@ -94,7 +94,8 @@ startNode()
 echo ">>>>>> Regenerating Alias..."
 
 if [ -f ${HOME}/.bash_aliases ]; then
-    grep -v $BASENAME ${HOME}/.bash_aliases >${HOME}/.bash_aliases
+    grep -v $BASENAME ${HOME}/.bash_aliases >$TMPDIR/.bash_aliases.tmp
+    mv -f $TMPDIR/.bash_aliases.tmp ${HOME}/.bash_aliases
 fi
 
 for i in $(seq -f '%02g'  1  $NUMMN); do
