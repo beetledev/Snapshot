@@ -46,6 +46,7 @@ fi
 
 sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/g' ${HOME}/.bashrc
 sed -i 's/ls \-CF/ls \-alh/g' ${HOME}/.bashrc
+sed -i 's/;32m/;31m/g' ${HOME}/.bashrc
 
 for i in $(seq -f '%02g'  1  $NUMMN); do
     p=`expr $i - 1`
