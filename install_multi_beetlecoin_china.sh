@@ -336,7 +336,7 @@ clear
 echo "# you can use this masternode.conf configuration in you control wallet to start the masternodes, please change 'tx' & 'idx' with your collateral tx info"
 echo ""
 
-ls $HOME/.${BASENAME}*/${CONFIGFILE} | sort | while read FILE; do
+ls $HOME/.${BASENAME}??/${CONFIGFILE} | sort | while read FILE; do
     LN=${#FILE}
     MN=${FILE:$LN - 18:2}
     ADDR=$(grep "masternodeaddr\=" $FILE|awk -F '=' '{print $2}')

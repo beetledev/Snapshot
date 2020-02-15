@@ -1,7 +1,5 @@
 #!/bin/bash
-
-echo "# you can use this masternode.conf configuration in you control wallet to start the masternodes, please change 'tx' & 'idx' with your collateral tx info"
-echo ""
+#!/bin/bash
 
 ls ~/.beetlecoin??/beetlecoin.conf | sort | while read FILE; do
     LN=${#FILE}
