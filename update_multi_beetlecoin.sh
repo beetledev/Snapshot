@@ -98,11 +98,16 @@ if [ -f ${HOME}/.bash_aliases ]; then
     mv -f $TMPDIR/.bash_aliases.tmp ${HOME}/.bash_aliases
 fi
 
+sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/g' ${HOME}/.bashrc
+sed -i 's/ls \-CF/ls \-alh/g' ${HOME}/.bashrc
+
 for i in $(seq -f '%02g'  1  $NUMMN); do
     p=`expr $i - 1`
     CFG=${HOME}/.${BASENAME}${i}/${CONFIGFILE}
     echo "alias b${i}cli='/usr/local/bin/${CLIENT} -conf=${CFG}'" >>${HOME}/.bash_aliases
 done
+
+echo "alias p='ps -efH'" >>${HOME}/.bash_aliases
 
 # ------------------------------------------------------------------------------------------------
 
