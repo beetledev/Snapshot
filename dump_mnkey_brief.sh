@@ -10,3 +10,4 @@ ls ~/.beetlecoin??/beetlecoin.conf | sort | while read FILE; do
     echo "MN${MN} ${ADDR} ${MNKEY} <tx> <id>"
 done
 
+echo ""
