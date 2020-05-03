@@ -32,6 +32,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 add-apt-repository -y ppa:bitcoin/bitcoin  1>/dev/null 2>&1
+add-apt-repository -y ppa:ubuntu-toolchain-r/test 1>/dev/null 2>&1
 
 apt-get -qq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y update
 apt-get -qq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y full-upgrade
@@ -228,7 +229,7 @@ sleep 5s
 
 echo "Generating keys..."
 p=0
-MNKEY[$p]=`/usr/local/bin/${CLIENT} -conf=${CFG} masternode genkey`
+MNKEY[$p]=`/usr/local/bin/${CLIENT} -conf=${CFG} createmasternodekey`
 echo "Key: ${MNKEY[$p]}"
 
 stopNode
