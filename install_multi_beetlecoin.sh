@@ -38,6 +38,7 @@ apt-get -qq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-con
  htop \
  unzip \
  curl \
+ dnsutils \
  git
 
 if [[ $? -ne 0 ]]; then
