@@ -24,6 +24,7 @@ apt-get -qq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-con
  htop \
  unzip \
  curl \
+ jq \
  git
 
 if [[ $? -ne 0 ]]; then
@@ -222,7 +223,7 @@ echo ">>>>>> Starting the 1st node to generate the masternode keys..."
 configureNode 0 0 ''
 startNode 
 
-CFG=${HOME}/.${BASENAME}01/${CONFIGFILE}
+CFG=${HOME}/.${BASENAME}/${CONFIGFILE}
 
 echo "Waiting 5 seconds..."
 sleep 5s
