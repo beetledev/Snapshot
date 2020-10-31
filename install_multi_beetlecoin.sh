@@ -84,7 +84,7 @@ SERVER="${BASENAME}d"
 TX="${BASENAME}-tx"
 TMPDIR="${HOME}/beettmp"
 #IP=`dig +short ANY myip.opendns.com @resolver1.opendns.com`
-IP=`dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com`
+IP=`dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com|tr -d '"'`
 
 for i in $(seq -f '%02g'  1  $NUMMN); do
     if [ -d $HOME/.${BASENAME}$i ]; then
