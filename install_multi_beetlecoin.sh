@@ -105,7 +105,7 @@ fi
 
 echo ">>>>>> Locating latest snapshot..."
 
-SNAPSHOTURL=$(curl -s https://beetlecoin.io/downloads/snapshot-20210216.zip | grep "browser_download_url.*\.zip"| cut -d '"' -f 4)
+SNAPSHOTURL=$(curl -s https://api.github.com/repos/beetledev/Snapshot/releases/latest | grep "browser_download_url.*\.zip"| cut -d '"' -f 4)
 SNAPSHOTNAME=$(echo "${SNAPSHOTURL}"|awk -F '/' '{print $NF}')
 
 if [[ ${#SNAPSHOTNAME} -eq 0 ]]; then
